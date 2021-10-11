@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Discount.API.Entities;
+using Discount.Shared.Entities;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System;
@@ -7,9 +7,9 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Discount.API.Repositories
+namespace Discount.Shared.Repositories
 {
-    internal class DiscountRepository : IDiscountRepository
+    public class DiscountRepository : IDiscountRepository
     {
         private readonly IConfiguration _configuration;
         private readonly IDbConnection _connection;
