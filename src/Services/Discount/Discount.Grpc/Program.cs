@@ -2,7 +2,7 @@ using Discount.Shared.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Discount.API
+namespace Discount.Grpc
 {
     public class Program
     {

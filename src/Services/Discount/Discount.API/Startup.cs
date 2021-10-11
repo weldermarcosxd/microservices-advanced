@@ -1,12 +1,10 @@
-using Discount.API.Repositories;
+using Discount.Shared.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Npgsql;
-using System.Data;
 
 namespace Discount.API
 {
@@ -23,8 +21,7 @@ namespace Discount.API
         {
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Discount.API", Version = "v1" }));
-            services.AddScoped<IDbConnection, NpgsqlConnection>();
-            services.AddScoped<IDiscountRepository, DiscountRepository>();
+            services.AddSharedServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
