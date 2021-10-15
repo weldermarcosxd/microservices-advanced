@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Discount.Grpc.Entities;
 using Discount.Grpc.Protos;
-using Discount.Shared.Entities;
-using Discount.Shared.Repositories;
+using Discount.Grpc.Repositories;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,7 +22,7 @@ namespace Discount.Grpc.Services
             _mapper = mapper;
         }
 
-        public override async Task<CouponModel> GetDiscountAsync(GetDiscountRequest request, ServerCallContext context)
+        public override async Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
         {
             var coupon = await _discountRepository.GetDiscountAsync(request.ProductName, context.CancellationToken);
             if (coupon is null)
@@ -32,7 +32,7 @@ namespace Discount.Grpc.Services
             return _mapper.Map<CouponModel>(coupon);
         }
 
-        public override async Task<CouponModel> CreateDiscountAsync(CreateDiscountRequest request, ServerCallContext context)
+        public override async Task<CouponModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
         {
             var coupon = _mapper.Map<Coupon>(request.Coupon);
             await _discountRepository.CreateDiscountASync(coupon, context.CancellationToken);
@@ -40,7 +40,7 @@ namespace Discount.Grpc.Services
             return _mapper.Map<CouponModel>(coupon);
         }
 
-        public override async Task<CouponModel> UpdateDiscountAsync(UpdateDiscountRequest request, ServerCallContext context)
+        public override async Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
         {
             var coupon = _mapper.Map<Coupon>(request.Coupon);
             await _discountRepository.UpdateDiscountAsync(coupon, context.CancellationToken);
@@ -48,9 +48,10 @@ namespace Discount.Grpc.Services
             return _mapper.Map<CouponModel>(coupon);
         }
 
-        public override async Task<DeleteDiscountResponse> DeleteDiscountAsync(DeleteDiscountRequest request, ServerCallContext context)
+        public override async Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request, ServerCallContext context)
         {
             var deleted = await _discountRepository.DeleteDiscountAsync(request.ProductName, context.CancellationToken);
+            _logger.LogInformation($"Discount is sucessfully deleted. ProductName: {request.ProductName}");
             return new DeleteDiscountResponse { Success = deleted };
         }
     }

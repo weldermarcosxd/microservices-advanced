@@ -1,4 +1,4 @@
-using Discount.Shared.Extensions;
+using Discount.Grpc.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

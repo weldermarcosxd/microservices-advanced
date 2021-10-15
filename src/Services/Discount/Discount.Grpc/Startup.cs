@@ -1,5 +1,5 @@
-﻿using Discount.Grpc.Services;
-using Discount.Shared.Extensions;
+﻿using Discount.Grpc.Extensions;
+using Discount.Grpc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

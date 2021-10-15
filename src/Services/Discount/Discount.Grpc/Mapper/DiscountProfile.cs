@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Discount.Grpc.Entities;
 using Discount.Grpc.Protos;
-using Discount.Shared.Entities;
 
 namespace Discount.Grpc.Mapper
 {
